@@ -1,0 +1,26 @@
+# Secrets
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Notebooks : gardés en local uniquement (comme pour Jour1). Le dépôt ne sert qu'à héberger
+# le code partagé (agents/, modules racine) et la base vectorielle que les notebooks utilisent.
+*.ipynb
+
+# État runtime généré par l'app (mémoire des opportunités détectées), pas du matériel de cours
+memory.json
+
+# Poids du réseau de neurones profond (1+ Go) : bien trop volumineux pour Git.
+# Voir Google Drive (lien dans le notebook 2) ou copie locale dans Jour1/Preparation données/.
+deep_neural_network.pth
+
+# Cache Modal / Gradio locaux
+.modal.toml
+.gradio/
