@@ -16,9 +16,9 @@ GPU = "T4"
 BASE_MODEL = "meta-llama/Llama-3.2-3B"
 PROJECT_NAME = "price"
 HF_USER = "Ddiop01"  # Votre nom Hugging Face ici ! Ou gardez le mien pour reproduire mes résultats.
-RUN_NAME = "2026-06-09_10.08.11-lite"
+RUN_NAME = "2026-06-23_20.55.07"
 PROJECT_RUN_NAME = f"{PROJECT_NAME}-{RUN_NAME}"
-REVISION = "e9ca1628a9c354cc7a0da5a2f955667dbc489d1c"   # Révision (commit) précise de l'adaptateur sur le Hub
+REVISION = None   # None = dernière révision du dépôt (pas de commit précis connu pour ce run)
 FINETUNED_MODEL = f"{HF_USER}/{PROJECT_RUN_NAME}"
 
 
