@@ -109,5 +109,17 @@ class Preprocessor:
             self.total_output_tokens += response.usage.completion_tokens
             self.total_cost += response._hidden_params.get("response_cost", 0)
             return response.choices[0].message.content
-        except Exception:
+        except Exception as e:
+            print(
+                f"⚠️ Échec de l'appel au modèle de prétraitement '{self.model_name}'"
+                + (f" (api_base={self.base_url})" if self.base_url else "")
+                + f" : {e}\n"
+                "   → Bascule sur un prétraitement de secours (heuristique, qualité dégradée) : "
+                "la description générée sera de moins bonne qualité et l'estimation de prix qui en "
+                "découle sera probablement peu fiable.\n"
+                "   → Si vous comptiez utiliser Ollama, vérifiez qu'il est bien démarré en local "
+                "('ollama serve', puis 'ollama pull llama3.2').\n"
+                "   → Alternative sans installation locale : "
+                "Preprocessor(model_name='groq/openai/gpt-oss-20b')."
+            )
             return self._fallback_preprocess(text)
