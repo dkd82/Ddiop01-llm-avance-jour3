@@ -81,14 +81,19 @@ class App:
                 initial_result = table_for(self.get_agent_framework().memory)
                 final_result = None
                 while True:
+                    # ⚠️ `final_result or initial_result` lève ValueError dès que final_result est un
+                    # DataFrame (sa valeur de vérité est ambiguë pour pandas, même vide) : on utilise
+                    # une comparaison explicite à None à la place.
+                    current_result = final_result if final_result is not None else initial_result
                     try:
                         message = log_queue.get_nowait()
                         log_data.append(reformat(message))
-                        yield log_data, html_for(log_data), final_result or initial_result
+                        yield log_data, html_for(log_data), current_result
                     except queue.Empty:
                         try:
                             final_result = result_queue.get_nowait()
-                            yield log_data, html_for(log_data), final_result or initial_result
+                            current_result = final_result if final_result is not None else initial_result
+                            yield log_data, html_for(log_data), current_result
                         except queue.Empty:
                             if final_result is not None:
                                 break
