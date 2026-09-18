@@ -10,7 +10,7 @@ class PlanningAgent(Agent):
 
     name = "Planning Agent"
     color = Agent.GREEN
-    DEAL_THRESHOLD = 50   # Remise minimale (en $) pour qu'une offre déclenche une notification
+    DEAL_THRESHOLD = 10   # Remise minimale (en $) pour qu'une offre déclenche une notification (abaissé pour la démo, était 50)
 
     def __init__(self, collection):
         """
